@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>View member</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>View Member</h1>
+<a th:href="@{/member}">Back to Member List</a>
+<br/><br/>
+<div th:if="${member}">
+    <table border="0">
+        <tr>
+            <td>Anrede</td>
+            <td>:</td>
+            <td th:utext="${member.anrede}">...</td>
+            <td>Vorname</td>
+            <td>:</td>
+            <td th:utext="${member.vorname}">...</td>
+            <td>Name</td>
+            <td>:</td>
+            <td th:utext="${member.name}">...</td>
+            <td>Familienstand</td>
+            <td>:</td>
+            <td th:utext="${member.famstand}">...</td>
+        </tr>
+        <tr>
+            <td>Geburtstag</td>
+            <td>:</td>
+            <td th:text="${#dates.format(member.geburt, 'dd.MM.yyyy')}">...</td>
+        </tr>
+        <tr>
+            <td>Telefon 1</td>
+            <td>:</td>
+            <td th:utext="${member.telefon}">...</td>
+            <td>Telefon 2</td>
+            <td>:</td>
+            <td th:utext="${member.telefon2}">...</td>
+            <td>Mobile</td>
+            <td>:</td>
+            <td th:utext="${member.mobil}">...</td>
+            <td>Email</td>
+            <td>:</td>
+            <td th:utext="${member.email}">...</td>
+        </tr>
+        <tr>
+            <td>Postleitzahl</td>
+            <td>:</td>
+            <td th:utext="${member.plz}">...</td>
+            <td>Ort</td>
+            <td>:</td>
+            <td th:utext="${member.ort}">...</td>
+            <td>Strasse</td>
+            <td>:</td>
+            <td th:utext="${member.strasse}">...</td>
+            <td>Post3</td>
+            <td>:</td>
+            <td th:utext="${member.post3}">...</td>
+        </tr>
+        <tr>
+            <td>Mitgliedsnummer</td>
+            <td>:</td>
+            <td th:utext="${member.mitnum}">...</td>
+            <td>Abteilung</td>
+            <td>:</td>
+            <td th:utext="${member.abteilung}">...</td>
+            <td>Aktiv</td>
+            <td>:</td>
+            <td th:utext="${member.aktiv}">...</td>
+            <td>Austritt</td>
+            <td>:</td>
+            <td th:utext="${member.austritt}">...</td>
+        </tr>
+        <tr>
+            <td>Stimme</td>
+            <td>:</td>
+            <td th:utext="${member.stimme}">...</td>
+            <td>Funktion</td>
+            <td>:</td>
+            <td th:utext="${member.funktion}">...</td>
+            <td>Status</td>
+            <td>:</td>
+            <td th:utext="${member.status}">...</td>
+            <td>Mitglied seit</td>
+            <td>:</td>
+            <td th:utext="${#dates.format(member.mitseit, 'dd.MM.yyyy')}">...</td>
+        </tr>
+        <tr>
+            <td>Zu 2</td>
+            <td>:</td>
+            <td th:text="${#dates.format(member.zu2, 'dd.MM.yyyy')}">...</td>
+            <td>Zu 10</td>
+            <td>:</td>
+            <td th:text="${#dates.format(member.zu10, 'dd.MM.yyyy')}">...</td>
+            <td>Zu 11</td>
+            <td>:</td>
+            <td th:text="${#dates.format(member.zu11, 'dd.MM.yyyy')}">...</td>
+        </tr>
+        <tr>
+            <td>Zu 3</td>
+            <td>:</td>
+            <td th:utext="${member.zu3}">...</td>
+            <td>Zu 5</td>
+            <td>:</td>
+            <td th:utext="${member.zu5}">...</td>
+            <td>Zu 7</td>
+            <td>:</td>
+            <td th:utext="${member.zu7}">...</td>
+        </tr>
+        <tr>
+            <td>Bemerkungen</td>
+            <td>:</td>
+            <td><textarea th:utext="${bemerk}" rows="4" cols="50" size="400" readonly="" /></td>
+            <td>Ehrungen</td>
+            <td>:</td>
+            <td><textarea th:utext="${ehrungen}" rows="4" cols="50" size="400" readonly=""/></td>
+        </tr>
+    </table>
+    <br/><br/>
+    <div th:if="not ${allowDelete}">
+        <a th:href="@{/member/{memberId}/edit(memberId=${member.id})}">Edit</a> |
+        <a th:href="@{/member/{memberId}/delete(memberId=${member.id})}">Delete</a>
+    </div>
+    <form th:if="${allowDelete}" th:action="@{/member/{memberId}/delete(memberId=${member.id})}" method="POST">
+        Delete this member? <input type="submit" th:value="Yes" />
+    </form>
+</div>
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
+</body>
+</html>

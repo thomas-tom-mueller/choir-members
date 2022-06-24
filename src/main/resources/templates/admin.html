@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:utext="${title}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+
+<body>
+<h1 th:utext="${title}"/>
+<p th:utext="${version}"/>
+<br/><br/>
+<a th:href="@{/}">Start Page</a> |
+<a th:href="@{/admin/dbimport}" th:target="_blank">Import Datatbase</a> |
+<a th:href="@{/admin/dbexport}" th:target="_blank">Export Datatbase</a> |
+<a th:href="@{/h2}" th:target="_blank">H2 Console</a> |
+<a th:href="@{/actuator}" th:target="_blank">System Health</a>
+</body>
+</html>

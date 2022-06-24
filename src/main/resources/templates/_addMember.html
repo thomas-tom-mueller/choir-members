@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <link href="css/styles.css" rel="stylesheet"/>
+        <title>Spring Boot Application</title>
+    </head>
+    <body>
+    <h4>Add Member</h4>
+    <p><a href="/member">Member List</a></p>
+    <form action="#"
+      th:action="@{/memberAdd}"
+      th:object="${member}"
+      method="post">
+        <label for="name">Name</label>
+        <input type="text" th:field="*{Name}" id="Name" placeholder="Name">
+        <span th:if="${#fields.hasErrors('Name')}" th:errors="*{Name}"></span>
+        <label for="Vorname">Vorname</label>
+        <input type="text" th:field="*{Vorname}" id="Vorname" placeholder="Vorname">
+        <span th:if="${#fields.hasErrors('Vorname')}" th:errors="*{Vorname}"></span>
+        <input type="submit" value="Add Member">
+    </form>
+    </body>
+</html>

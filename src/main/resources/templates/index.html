@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:utext="${title}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+
+<body>
+<h1 th:utext="${title}"/>
+<p th:utext="${version}" />
+<br/><br/>
+<a th:href="@{/member}">Member administration</a> |
+<a th:href="@{/admin}">System administration</a> |
+</body>
+</html>

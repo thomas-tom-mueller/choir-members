@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title th:utext="${title}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1 th:utext="${title}"/>
+<div>
+    <nobr>
+        <a th:href="@{/}">Start Page</a> |
+        <a th:href="@{/member/add}">Add new Member</a> |
+        <a th:if="${hasPrev}" th:href="@{/member?page={prev}(prev=${prev})}">Previos Page</a> |
+        <a th:if="${hasNext}" th:href="@{/member?page={next}(next=${next})}">Next Page</a>
+    </nobr>
+</div>
+<br/><br/>
+<div>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Anrede</th>
+            <th>Name</th>
+            <th>Vorname</th>
+            <th>Geburtstag</th>
+            <th>Telefon 1</th>
+            <th>Telefon 2</th>
+            <th>Mobil</th>
+            <th>Mitglied seit</th>
+            <th>Mitglied Nummer</th>
+            <th>Abteilung</th>
+            <th>Aktiv</th>
+            <th>Austritt</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <tr th:each ="member : ${members}">
+            <td><a th:href="@{/member/{memberId}(memberId=${member.id})}" th:utext="${member.id}">...</a></td>
+            <td><a th:href="@{/member/{memberId}(memberId=${member.id})}" th:utext="${member.anrede}">...</a></td>
+            <td><a th:href="@{/member/{memberId}(memberId=${member.id})}" th:utext="${member.name}">...</a></td>
+            <td><a th:href="@{/member/{memberId}(memberId=${member.id})}" th:utext="${member.vorname}">...</a></td>
+            <td><a th:text="${#dates.format(member.geburt, 'dd.MM.yyyy')}">...</a></td>
+            <td><a th:utext="${member.telefon}">...</a></td>
+            <td><a th:utext="${member.telefon2}">...</a></td>
+            <td><a th:utext="${member.mobil}">...</a></td>
+            <td><a th:text="${#dates.format(member.mitseit, 'dd.MM.yyyy')}">...</a></td>
+            <td><a th:utext="${member.mitnum}">...</a></td>
+            <td><a th:utext="${member.abteilung}">...</a></td>
+            <td><a th:utext="${member.aktiv}">...</a></td>
+            <td><a th:utext="${member.austritt}">...</a></td>
+            <td><a th:href="@{/member/{memberId}/edit(memberId=${member.id})}">Edit</a></td>
+            <td><a th:href="@{/member/{memberId}/delete(memberId=${member.id})}">Delete</a></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
